@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "home": "首頁",
+    "works": "作品",
+    "about": "關於"
+  },
+  "home": {
+    "heroTitle": "哈囉，我是 Orange Sheep",
+    "heroSubtitle": "這裡展示我的專案、設計資產與跨領域作品",
+    "featured": "精選作品",
+    "viewAll": "查看全部"
+  },
+  "work": {
+    "download": "下載",
+    "links": "相關連結",
+    "noResults": "目前這個分類還沒有作品"
+  },
+  "categories": {
+    "project": "專案",
+    "designAsset": "設計資產",
+    "business": "商業領域",
+    "creative": "創作領域"
+  }
+}

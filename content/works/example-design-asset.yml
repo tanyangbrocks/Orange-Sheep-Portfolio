@@ -1,0 +1,17 @@
+slug: example-design-asset
+category: designAsset
+title:
+  zh-TW: 範例設計資產
+  en: Example Design Asset
+description:
+  zh-TW: 這是一個範例設計資產的敘述文字，之後替換成真實內容。
+  en: Placeholder description for an example design asset. Replace with real content later.
+previewImages:
+  - /works/placeholder.svg
+links:
+  - label: ArtStation
+    url: https://www.artstation.com
+downloadUrl: https://example.com/download/asset
+tags:
+  - example
+date: 2026-07-04

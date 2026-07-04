@@ -1,0 +1,16 @@
+slug: example-creative
+category: creative
+title:
+  zh-TW: 範例創作作品
+  en: Example Creative Work
+description:
+  zh-TW: 這是一個範例創作領域作品的敘述文字，之後替換成真實內容，此分類沒有下載點。
+  en: Placeholder description for an example creative work. Replace with real content later. This category has no download link.
+previewImages:
+  - /works/placeholder.svg
+links:
+  - label: Instagram
+    url: https://www.instagram.com
+tags:
+  - example
+date: 2026-07-04

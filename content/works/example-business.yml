@@ -1,0 +1,17 @@
+slug: example-business
+category: business
+title:
+  zh-TW: 範例商業案例
+  en: Example Business Case
+description:
+  zh-TW: 這是一個範例商業領域案例的敘述文字，之後替換成真實內容。
+  en: Placeholder description for an example business case. Replace with real content later.
+previewImages:
+  - /works/placeholder.svg
+links:
+  - label: LinkedIn
+    url: https://www.linkedin.com
+downloadUrl: https://example.com/download/case
+tags:
+  - example
+date: 2026-07-04

@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "home": "Home",
+    "works": "Works",
+    "about": "About"
+  },
+  "home": {
+    "heroTitle": "Hi, I'm Orange Sheep",
+    "heroSubtitle": "A showcase of my projects, design assets, and cross-domain work",
+    "featured": "Featured Work",
+    "viewAll": "View All"
+  },
+  "work": {
+    "download": "Download",
+    "links": "Links",
+    "noResults": "No works in this category yet"
+  },
+  "categories": {
+    "project": "Projects",
+    "designAsset": "Design Assets",
+    "business": "Business",
+    "creative": "Creative"
+  }
+}
