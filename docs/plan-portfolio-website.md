@@ -107,16 +107,17 @@ type WorkEntry = {
 
 ## 六、分階段實作步驟
 
-- **Phase 1 — 專案骨架 + 多語系底座**
+- **Phase 1 — 專案骨架 + 多語系底座** ✅ 完成（2026-07-04）
   - `create-next-app`（TypeScript + Tailwind）
   - 導入 `next-intl`，設定 `/zh-TW`、`/en` routing 與語言切換器
   - 導入 `shadcn/ui`、`lucide-react`、`next/font`
-  - 決定並導入 `Velite` 或 `Contentlayer`
+  - 決定並導入 `Velite`（選用 Velite，非 Contentlayer：維護較活躍、設定較單純）
   - 建立資料夾結構（`content/works/`, `content/categories.ts`, `components/`, `app/`）
   - 定義 `WorkEntry` 型別、`categories.ts` 分類設定、讀取資料的工具函式
-- **Phase 2 — 核心頁面與資料串接**
-  - 首頁、作品列表頁（含分類/子分類篩選）、作品詳細頁
-  - 先用四大分類各 1-2 筆假資料（含雙語內容）測試版型彈性，特別驗證「creative 沒有下載點」這種欄位差異
+- **Phase 2 — 核心頁面與資料串接**（部分已提前完成，見下）
+  - ✅ 四大分類各 1 筆假資料（含雙語內容）已建立於 `content/works/`，驗證「creative 沒有下載點」等欄位差異通過 schema 檢查
+  - ✅ 首頁（Hero + 精選作品 grid）、作品列表頁（尚無篩選 UI）、About 頁 skeleton 已完成
+  - 待做：作品列表頁的分類/子分類篩選 UI、作品詳細頁（或 Modal）、下載按鈕依 `downloadUrl` 顯示
 - **Phase 3 — 動態特效**
   - 導入 Framer Motion：hover、進場、頁面轉場
   - （加分項）導入 `Lenis` 做平滑捲動
