@@ -2,6 +2,7 @@ import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/site-header'
 import { WorkCard } from '@/components/work-card'
+import { HeroText } from '@/components/hero-text'
 import { getFeaturedWorks } from '@/lib/works'
 import type { Locale } from '@/i18n/routing'
 
@@ -14,10 +15,7 @@ export default function Home() {
     <div className="flex flex-1 flex-col">
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-12 px-6 py-16">
-        <section className="flex flex-col gap-3">
-          <h1 className="text-4xl font-semibold tracking-tight">{t('heroTitle')}</h1>
-          <p className="max-w-xl text-lg text-muted-foreground">{t('heroSubtitle')}</p>
-        </section>
+        <HeroText title={t('heroTitle')} subtitle={t('heroSubtitle')} />
 
         <section className="flex flex-col gap-4">
           <div className="flex items-center justify-between">

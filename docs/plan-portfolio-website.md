@@ -1,6 +1,6 @@
 # 個人作品集網站 — 實作計畫
 
-最後更新：2026-07-03
+最後更新：2026-07-05
 
 ## 一、專案目標
 
@@ -23,8 +23,6 @@
 
 ## 三、技術選型
 
-| 項目 | 選擇 |
-|------|------|
 | 項目 | 選擇 | 優先度 |
 |------|------|--------|
 | 框架 | Next.js（App Router）+ TypeScript | 必裝 |
@@ -41,7 +39,7 @@
 | 平滑捲動 | `Lenis`（搭配 Framer Motion `whileInView` 提升 scroll 質感） | 加分項 |
 | 3D/互動背景 | `react-three-fiber`（Three.js） | 加分項，暫不排入 Phase 1-4，複雜度高、bundle 較大 |
 | SEO | Next.js 內建 Metadata API | 必裝，不需額外套件 |
-| Bundle 體積檢查 | `@next/bundle-analyzer` | 加分項（Phase 4 上線前跑一次） |
+| Bundle 體積檢查 | `next experimental-analyze`（Next.js 內建，Turbopack 專用；`@next/bundle-analyzer` 不支援 Turbopack build，已改用內建方案） | 加分項（Phase 4 上線前跑一次） |
 | 效能監測 | Vercel Analytics + Speed Insights（Vercel 免費方案內建） | 加分項（Phase 4 部署後開啟） |
 | 部署 | Vercel（免費方案，`*.vercel.app` 子網域） | 必裝 |
 | 版本控制 | 獨立 Git repo，已連接 GitHub [`tanyangbrocks/Orange-Sheep-Portfolio`](https://github.com/tanyangbrocks/Orange-Sheep-Portfolio.git) | 必裝 |
@@ -114,21 +112,27 @@ type WorkEntry = {
   - 決定並導入 `Velite`（選用 Velite，非 Contentlayer：維護較活躍、設定較單純）
   - 建立資料夾結構（`content/works/`, `content/categories.ts`, `components/`, `app/`）
   - 定義 `WorkEntry` 型別、`categories.ts` 分類設定、讀取資料的工具函式
-- **Phase 2 — 核心頁面與資料串接**（部分已提前完成，見下）
+- **Phase 2 — 核心頁面與資料串接** ✅ 完成（2026-07-04）
   - ✅ 四大分類各 1 筆假資料（含雙語內容）已建立於 `content/works/`，驗證「creative 沒有下載點」等欄位差異通過 schema 檢查
-  - ✅ 首頁（Hero + 精選作品 grid）、作品列表頁（尚無篩選 UI）、About 頁 skeleton 已完成
-  - 待做：作品列表頁的分類/子分類篩選 UI、作品詳細頁（或 Modal）、下載按鈕依 `downloadUrl` 顯示
-- **Phase 3 — 動態特效**
-  - 導入 Framer Motion：hover、進場、頁面轉場
-  - （加分項）導入 `Lenis` 做平滑捲動
-- **Phase 4 — 內容填充 + 部署**
-  - 使用者提供真實作品資料（雙語）與圖片
-  - 跑一次 `@next/bundle-analyzer` 確認 bundle 體積合理
-  - 部署到 Vercel，取得免費子網域，開啟 Vercel Analytics + Speed Insights
+  - ✅ 首頁（Hero + 精選作品 grid）、About 頁 skeleton
+  - ✅ 作品列表頁分類/子分類篩選 UI（`src/components/works-filter.tsx`，shadcn Tabs + Badge，client-side 篩選）
+  - ✅ 作品詳細頁 `src/app/[locale]/works/[slug]/page.tsx`（含 gallery、雙語敘述、外部連結按鈕、下載按鈕依 `downloadUrl` 是否存在顯示、`generateStaticParams`/`generateMetadata`）
+- **Phase 3 — 動態特效** ✅ 完成（2026-07-04）
+  - ✅ Framer Motion：作品卡片 hover 位移、進場 `whileInView`、頁面轉場（`src/app/[locale]/template.tsx`，App Router `template.tsx` 在路由切換時重新掛載，比 `AnimatePresence` 手動處理更簡單）
+  - ✅ `Lenis` 平滑捲動（`<ReactLenis root>` 包在 locale layout）
+- **Phase 4 — 內容填充 + 部署**（部分已完成，見下）
+  - ✅ 跑過 `next experimental-analyze` 確認 bundle 體積合理（目前總 client chunks 約 1.1MB 未壓縮，無單一過大 chunk）
+  - ✅ 已裝 Vercel Analytics + Speed Insights（`@vercel/analytics`、`@vercel/speed-insights`，接上 Vercel 才會真正收集數據，未部署前是安全的 no-op）
+  - ⏳ **待使用者提供**：真實作品資料（雙語文字 + 圖片），目前只有 4 筆佔位假資料
+  - ⏳ **待使用者操作**：實際部署到 Vercel（需要使用者的 Vercel 帳號登入/連接 GitHub repo 授權，無法由 AI 代為完成）
 - **Phase 5（未來擴充，非本次範圍）**
   - 視需求評估：自訂網域、CMS 後台（含資料庫）、雲端圖床、新增更多分類/子分類、`next-themes` 深色模式、`react-three-fiber` 3D 互動背景
 
 ## 七、待確認事項
 
 - 目前四大分類已確認：專案（含工具/遊戲子分類）、設計資產、商業領域、創作領域，欄位差異已反映在 schema 中；之後新增分類時只需更新 `content/categories.ts`，不影響架構。
-- 尚待補齊：實際的雙語文案（各分類的中/英名稱顯示文字）、以及第一批要上架的真實作品資料，Phase 2 開始前可陸續提供。
+- Phase 1-3 與 Phase 4 的非部署項目（bundle 檢查、Analytics 安裝）已於 2026-07-04 完成，程式碼與骨架已可運作（`npm run build` / `npm run lint` 皆 0 錯誤 0 警告）。
+
+**目前卡在兩件只有使用者能做的事**：
+1. **真實作品內容**：`content/works/` 目前是 4 筆佔位假資料（每個分類各一筆），需要使用者提供實際要展示的專案/設計資產/商業案例/創作作品的標題、敘述（中英文）、圖片、連結、下載點。
+2. **Vercel 部署**：需要使用者用自己的 Vercel 帳號登入並連接 GitHub repo `tanyangbrocks/Orange-Sheep-Portfolio` 做首次部署授權，這一步無法由 AI 代為完成。

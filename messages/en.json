@@ -13,9 +13,11 @@
   "work": {
     "download": "Download",
     "links": "Links",
-    "noResults": "No works in this category yet"
+    "noResults": "No works in this category yet",
+    "back": "Back to works"
   },
   "categories": {
+    "all": "All",
     "project": "Projects",
     "designAsset": "Design Assets",
     "business": "Business",

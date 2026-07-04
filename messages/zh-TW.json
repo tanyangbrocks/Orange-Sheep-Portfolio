@@ -13,9 +13,11 @@
   "work": {
     "download": "下載",
     "links": "相關連結",
-    "noResults": "目前這個分類還沒有作品"
+    "noResults": "目前這個分類還沒有作品",
+    "back": "返回作品列表"
   },
   "categories": {
+    "all": "全部",
     "project": "專案",
     "designAsset": "設計資產",
     "business": "商業領域",

@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { getCategory } from '@content/categories'
@@ -12,24 +16,39 @@ export function WorkCard({ work, locale }: { work: WorkEntry; locale: Locale }) 
   const preview = work.previewImages?.[0]
 
   return (
-    <Card className="overflow-hidden py-0 gap-3">
-      {preview && (
-        <div className="relative aspect-[4/3] w-full bg-muted">
-          <Image src={preview} alt={localize(work.title, locale)} fill className="object-cover" />
-        </div>
-      )}
-      <CardHeader className="px-4 pt-4">
-        <div className="flex items-center gap-2">
-          {category && <Badge variant="secondary">{t(category.id)}</Badge>}
-          {work.subcategory && <Badge variant="outline">{work.subcategory}</Badge>}
-        </div>
-        <CardTitle>{localize(work.title, locale)}</CardTitle>
-      </CardHeader>
-      <CardContent className="px-4 pb-4">
-        <p className="line-clamp-3 text-sm text-muted-foreground">
-          {localize(work.description, locale)}
-        </p>
-      </CardContent>
-    </Card>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Link href={`/works/${work.slug}`} className="block h-full">
+        <Card className="h-full overflow-hidden py-0 gap-3 transition-shadow hover:shadow-lg">
+          {preview && (
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+              <Image
+                src={preview}
+                alt={localize(work.title, locale)}
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+          <CardHeader className="px-4 pt-4">
+            <div className="flex items-center gap-2">
+              {category && <Badge variant="secondary">{t(category.id)}</Badge>}
+              {work.subcategory && <Badge variant="outline">{work.subcategory}</Badge>}
+            </div>
+            <CardTitle>{localize(work.title, locale)}</CardTitle>
+          </CardHeader>
+          <CardContent className="px-4 pb-4">
+            <p className="line-clamp-3 text-sm text-muted-foreground">
+              {localize(work.description, locale)}
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
+    </motion.div>
   )
 }
