@@ -1,4 +1,4 @@
-import { useTranslations, useLocale } from 'next-intl'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/site-header'
 import { WorkCard } from '@/components/work-card'
@@ -6,9 +6,13 @@ import { HeroText } from '@/components/hero-text'
 import { getFeaturedWorks } from '@/lib/works'
 import type { Locale } from '@/i18n/routing'
 
-export default function Home() {
-  const t = useTranslations('home')
-  const locale = useLocale() as Locale
+type Props = { params: Promise<{ locale: string }> }
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
+
+  const t = await getTranslations('home')
   const featured = getFeaturedWorks()
 
   return (
@@ -26,7 +30,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((work) => (
-              <WorkCard key={work.slug} work={work} locale={locale} />
+              <WorkCard key={work.slug} work={work} locale={locale as Locale} />
             ))}
           </div>
         </section>

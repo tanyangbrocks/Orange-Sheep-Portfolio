@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/site-header'
@@ -34,6 +34,8 @@ export async function generateMetadata({
 
 export default async function WorkDetailPage({ params }: { params: Promise<Params> }) {
   const { locale, slug } = await params
+  setRequestLocale(locale)
+
   const work = getWork(slug)
   if (!work) notFound()
 
