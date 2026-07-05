@@ -137,10 +137,13 @@
   /* !important on the transition props: several buttons already carry
      transition-all (or transition-shadow etc.) for their own hover effects,
      which would otherwise silently win over this and flatten the bounce
-     into a plain, non-bouncy fade. */
+     into a plain, non-bouncy fade. transition-property lists every property
+     any button in the codebase currently animates (opacity for the photo
+     carousel arrows/sheet overlay, box-shadow for CTA/card hover-lift) so
+     this rule adds the bounce without silently dropping those transitions. */
   .tap-bounce,
   button:not(:disabled) {
-    transition-property: transform !important;
+    transition-property: transform, opacity, box-shadow !important;
     transition-duration: 280ms !important;
     transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   }

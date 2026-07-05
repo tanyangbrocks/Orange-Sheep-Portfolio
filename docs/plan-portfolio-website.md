@@ -123,8 +123,8 @@ type WorkEntry = {
 - **Phase 4 — 內容填充 + 部署**（部分已完成，見下）
   - ✅ 跑過 `next experimental-analyze` 確認 bundle 體積合理（目前總 client chunks 約 1.1MB 未壓縮，無單一過大 chunk）
   - ✅ 已裝 Vercel Analytics + Speed Insights（`@vercel/analytics`、`@vercel/speed-insights`，接上 Vercel 才會真正收集數據，未部署前是安全的 no-op）
+  - ✅ Vercel 帳號登入 + 連接 GitHub repo + 首次部署（使用者已完成，2026-07-06 確認）
   - ⏳ **待使用者提供**：真實作品資料（雙語文字 + 圖片），目前只有 4 筆佔位假資料
-  - ⏳ **待使用者操作**：實際部署到 Vercel（需要使用者的 Vercel 帳號登入/連接 GitHub repo 授權，無法由 AI 代為完成）
 - **Phase 5（未來擴充，非本次範圍）**
   - 視需求評估：自訂網域、CMS 後台（含資料庫）、雲端圖床、新增更多分類/子分類、`next-themes` 深色模式、`react-three-fiber` 3D 互動背景
 
@@ -132,7 +132,7 @@ type WorkEntry = {
 
 - 目前四大分類已確認：專案（含工具/遊戲子分類）、設計資產、商業領域、創作領域，欄位差異已反映在 schema 中；之後新增分類時只需更新 `content/categories.ts`，不影響架構。
 - Phase 1-3 與 Phase 4 的非部署項目（bundle 檢查、Analytics 安裝）已於 2026-07-04 完成，程式碼與骨架已可運作（`npm run build` / `npm run lint` 皆 0 錯誤 0 警告）。
+- Vercel 帳號登入、連接 GitHub repo `tanyangbrocks/Orange-Sheep-Portfolio`、首次部署授權，使用者已完成（2026-07-06 確認）。
 
-**目前卡在兩件只有使用者能做的事**：
+**目前卡在一件只有使用者能做的事**：
 1. **真實作品內容**：`content/works/` 目前是 4 筆佔位假資料（每個分類各一筆），需要使用者提供實際要展示的專案/設計資產/商業案例/創作作品的標題、敘述（中英文）、圖片、連結、下載點。
-2. **Vercel 部署**：需要使用者用自己的 Vercel 帳號登入並連接 GitHub repo `tanyangbrocks/Orange-Sheep-Portfolio` 做首次部署授權，這一步無法由 AI 代為完成。

@@ -12,6 +12,13 @@ import { motion, useMotionValue, animate } from 'framer-motion'
 const MAX_PULL = 80
 const RESISTANCE = 0.4
 const WHEEL_IDLE_MS = 150
+// Chrome/Edge trackpad "momentum" scrolling keeps sending a long tail of
+// small wheel events (often 1-1.5s worth) after the fingers actually lift.
+// Since each one resets the idle timer, the pulled state used to stay
+// visually "frozen" for that whole tail before finally springing back. Cap
+// how long a single gesture is allowed to hold the pull regardless of how
+// long its trailing momentum keeps trickling in.
+const MAX_HOLD_MS = 400
 // Lenis's resting scroll value isn't always exactly 0/limit (its internal
 // lerp can leave a few px of residual offset), so boundary checks need a
 // tolerance rather than an exact comparison.
@@ -21,6 +28,7 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
   const lenis = useLenis()
   const y = useMotionValue(0)
   const pullRef = useRef(0)
+  const pullStartRef = useRef(0)
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
@@ -39,7 +47,9 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
 
     function release() {
       pullRef.current = 0
-      animate(y, 0, { type: 'spring', stiffness: 300, damping: 28 })
+      pullStartRef.current = 0
+      clearTimeout(idleTimerRef.current)
+      animate(y, 0, { type: 'spring', bounce: 0.35, duration: 0.5 })
     }
 
     function scheduleRelease() {
@@ -53,9 +63,15 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
       if (!pullingDown && !pullingUp) return
 
       e.preventDefault()
+      if (pullStartRef.current === 0) pullStartRef.current = performance.now()
       pullRef.current = clampPull(pullRef.current - e.deltaY * RESISTANCE)
       y.set(pullRef.current)
-      scheduleRelease()
+
+      if (performance.now() - pullStartRef.current > MAX_HOLD_MS) {
+        release()
+      } else {
+        scheduleRelease()
+      }
     }
 
     let touchStartY = 0
