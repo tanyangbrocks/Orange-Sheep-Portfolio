@@ -1,9 +1,9 @@
 {
   "nav": {
-    "home": "Intro",
-    "experience": "Experience",
-    "works": "Works",
-    "about": "About"
+    "home": "About Me",
+    "experience": "Background",
+    "works": "Selected Works",
+    "about": "Contact"
   },
   "home": {
     "heroTitle": "Hi, I'm Orange Sheep",

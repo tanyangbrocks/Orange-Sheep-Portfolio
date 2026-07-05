@@ -1,9 +1,9 @@
 {
   "nav": {
-    "home": "簡介",
-    "experience": "經歷",
-    "works": "作品",
-    "about": "關於"
+    "home": "關於我",
+    "experience": "背景經歷",
+    "works": "代表作品",
+    "about": "聯絡我"
   },
   "home": {
     "heroTitle": "哈囉，我是 Orange Sheep",
