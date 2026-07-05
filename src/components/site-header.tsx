@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useLenis } from 'lenis/react'
@@ -81,8 +82,9 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between border-b bg-background/95 px-6 py-4 backdrop-blur">
-      <Link href="/#home" onClick={handleNavClick('home')} className="font-semibold">
+    <header className="sticky top-0 z-10 flex items-center justify-between border-b bg-background/60 px-6 py-4 backdrop-blur">
+      <Link href="/#home" onClick={handleNavClick('home')} className="flex items-center gap-2 font-semibold">
+        <Image src="/icon.png" alt="" width={28} height={28} className="rounded-full" />
         Orange Sheep
       </Link>
       <nav className="flex items-center gap-6 text-sm">

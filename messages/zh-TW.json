@@ -6,8 +6,18 @@
     "about": "聯絡我"
   },
   "home": {
-    "heroTitle": "哈囉，我是 Orange Sheep",
-    "heroSubtitle": "這裡展示我的專案、設計資產與跨領域作品",
+    "heroTitle": "哈囉，我是譚揚勳",
+    "heroSubtitle": "你也可以叫我彈羊",
+    "introDescription": "這是敘述文字的範例內容，之後替換成真實的自我介紹。",
+    "stat1Value": "X",
+    "stat1Label": "年開發經驗",
+    "stat2Value": "X",
+    "stat2Label": "個完成專案",
+    "stat3Value": "X",
+    "stat3Label": "次獲獎經驗",
+    "ctaWorks": "探索作品",
+    "ctaContact": "與我合作",
+    "photoPlaceholder": "照片預留位置",
     "featured": "精選作品",
     "viewAll": "查看全部"
   },
