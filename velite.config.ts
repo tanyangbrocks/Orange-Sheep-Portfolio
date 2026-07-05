@@ -1,4 +1,5 @@
 import { defineConfig, defineCollection, s } from 'velite'
+import { resolvePreviewImages } from './content/works/resolve-preview-images'
 
 const localizedText = s.object({
   'zh-TW': s.string(),
@@ -20,7 +21,10 @@ const works = defineCollection({
       subcategory: s.string().optional(),
       title: localizedText,
       description: localizedText,
-      previewImages: s.array(s.string()).optional(),
+      previewImages: s
+        .array(s.string())
+        .optional()
+        .transform((value, ctx) => resolvePreviewImages(value, ctx.meta.stem ?? '')),
       links: s.array(link).optional(),
       downloadUrl: s.string().optional(),
       tags: s.array(s.string()).optional(),
@@ -29,9 +33,24 @@ const works = defineCollection({
     })
 })
 
+const experiences = defineCollection({
+  name: 'Experience',
+  pattern: 'experiences/**/*.yml',
+  schema: s
+    .object({
+      slug: s.slug('experiences'),
+      role: localizedText,
+      organization: s.string(),
+      period: localizedText,
+      description: localizedText,
+      image: s.string().optional(),
+      startDate: s.isodate()
+    })
+})
+
 export default defineConfig({
   root: 'content',
-  collections: { works },
+  collections: { works, experiences },
   output: {
     data: '.velite',
     assets: 'public/static',

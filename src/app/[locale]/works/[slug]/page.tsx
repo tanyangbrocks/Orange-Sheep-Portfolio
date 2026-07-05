@@ -48,7 +48,7 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
     <div className="flex flex-1 flex-col">
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-6 py-16">
-        <Link href="/works" className="text-sm text-muted-foreground underline underline-offset-4">
+        <Link href="/#works" className="text-sm text-muted-foreground underline underline-offset-4">
           &larr; {t('back')}
         </Link>
 

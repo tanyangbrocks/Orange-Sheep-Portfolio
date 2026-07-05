@@ -49,8 +49,8 @@ if ($dataRows.Count -le $Keep) {
     exit 0
 }
 
-$toArchive = @($dataRows[0..($dataRows.Count - $Keep - 1)])
-$toKeep    = @($dataRows[($dataRows.Count - $Keep)..($dataRows.Count - 1)])
+$toKeep    = @($dataRows[0..($Keep - 1)])
+$toArchive = @($dataRows[$Keep..($dataRows.Count - 1)])
 
 # ── Rebuild progress file (keep header+sep, replace data rows) ────
 $before   = if ($dataStart -gt 0)                       { @($lines[0..($dataStart - 1)]) }                 else { @() }

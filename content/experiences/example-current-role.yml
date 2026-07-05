@@ -1,0 +1,12 @@
+slug: example-current-role
+role:
+  zh-TW: 範例職稱
+  en: Example Role
+organization: Example Company
+period:
+  zh-TW: 2025 - 至今
+  en: 2025 - Present
+description:
+  zh-TW: 這是一筆範例經歷的敘述文字，之後替換成真實內容。
+  en: Placeholder description for an example experience entry. Replace with real content later.
+startDate: 2025-01-01

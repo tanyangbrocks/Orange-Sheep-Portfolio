@@ -1,19 +1,10 @@
-import { setRequestLocale } from 'next-intl/server'
-import { SiteHeader } from '@/components/site-header'
+import { redirect } from 'next/navigation'
 
 type Props = { params: Promise<{ locale: string }> }
 
+// About content now lives inline on the home page (#about section).
+// This route only exists so old/external links to /about keep working.
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params
-  setRequestLocale(locale)
-
-  return (
-    <div className="flex flex-1 flex-col">
-      <SiteHeader />
-      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-4 px-6 py-16">
-        <h1 className="text-3xl font-semibold tracking-tight">About</h1>
-        <p className="text-muted-foreground">Placeholder — content to be added in a later phase.</p>
-      </main>
-    </div>
-  )
+  redirect(`/${locale}#about`)
 }
