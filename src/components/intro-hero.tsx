@@ -1,37 +1,53 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useLenis } from 'lenis/react'
 import { Link } from '@/i18n/navigation'
+import { PhotoCarousel } from '@/components/photo-carousel'
 
 type Stat = { value: string; label: string }
+
+const HEADER_OFFSET_FALLBACK = 72
+const OFFSET_BUFFER = 24
 
 export function IntroHero({
   title,
   subtitle,
   description,
   stats,
+  photos,
   photoPlaceholder,
   ctaWorks,
-  ctaContact
+  ctaContact,
+  ctaInteract
 }: {
   title: string
   subtitle: string
   description: string
   stats: Stat[]
+  photos: string[]
   photoPlaceholder: string
   ctaWorks: string
   ctaContact: string
+  ctaInteract: string
 }) {
+  const lenis = useLenis()
+
+  function scrollToSection(id: string) {
+    return (e: React.MouseEvent) => {
+      e.preventDefault()
+      const el = document.getElementById(id)
+      if (!el) return
+      const header = document.querySelector('header')
+      const offset = (header?.getBoundingClientRect().height ?? HEADER_OFFSET_FALLBACK) + OFFSET_BUFFER
+      lenis?.scrollTo(el, { offset: -offset })
+      history.replaceState(null, '', `#${id}`)
+    }
+  }
+
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center">
-      <motion.div
-        initial={{ opacity: 0, x: -16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.4 }}
-        className="flex aspect-[4/5] w-full items-center justify-center rounded-2xl border bg-muted text-sm text-muted-foreground"
-      >
-        {photoPlaceholder}
-      </motion.div>
+      <PhotoCarousel photos={photos} placeholder={photoPlaceholder} />
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -56,18 +72,33 @@ export function IntroHero({
         </div>
 
         <div className="flex flex-wrap gap-3 pt-2">
-          <Link
-            href="/#works"
-            className="rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            {ctaWorks}
-          </Link>
-          <Link
-            href="/#about"
-            className="rounded-md border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
-          >
-            {ctaContact}
-          </Link>
+          <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
+            <Link
+              href="/#works"
+              onClick={scrollToSection('works')}
+              className="block rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-shadow hover:shadow-lg"
+            >
+              {ctaWorks}
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
+            <Link
+              href="/#about"
+              onClick={scrollToSection('about')}
+              className="block rounded-md border px-5 py-2.5 text-sm font-medium shadow-sm transition-shadow hover:shadow-lg"
+            >
+              {ctaContact}
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
+            {/* Placeholder — not wired to anything yet, see docs' pending items */}
+            <button
+              type="button"
+              className="block rounded-md border px-5 py-2.5 text-sm font-medium shadow-sm transition-shadow hover:shadow-lg"
+            >
+              {ctaInteract}
+            </button>
+          </motion.div>
         </div>
       </motion.div>
     </div>

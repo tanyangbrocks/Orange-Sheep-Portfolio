@@ -10,5 +10,9 @@ export const siteAssets = {
   // picks this up and generates the <link rel="icon"> tags automatically.
   // Listed here so this stays the one place documenting where it lives.
   favicon: 'src/app/icon.png',
-  ogImage: '/og-default.png' // not created yet — add the file when Phase 2 needs an OG image
+  ogImage: '/og-default.png', // not created yet — add the file when Phase 2 needs an OG image
+  // Intro section photo carousel (src/components/photo-carousel.tsx caps this
+  // at 5 regardless of how many paths are listed). Empty for now — add paths
+  // under public/ once real photos are ready, e.g. '/intro/photo-1.jpg'.
+  introPhotos: [] as string[]
 } as const

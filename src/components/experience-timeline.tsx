@@ -36,6 +36,7 @@ export function ExperienceTimeline({
                   src={item.image}
                   alt={localize(item.role, locale)}
                   fill
+                  sizes="(max-width: 640px) 100vw, 192px"
                   className="object-cover"
                 />
               </motion.div>

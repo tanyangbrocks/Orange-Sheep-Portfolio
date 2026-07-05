@@ -31,6 +31,7 @@ export function WorkCard({ work, locale }: { work: WorkEntry; locale: Locale }) 
                 src={preview}
                 alt={localize(work.title, locale)}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
               />
             </div>

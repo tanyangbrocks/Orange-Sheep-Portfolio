@@ -5,6 +5,7 @@ import { IntroHero } from '@/components/intro-hero'
 import { ExperienceTimeline } from '@/components/experience-timeline'
 import { getWorks } from '@/lib/works'
 import { getExperiences } from '@/lib/experiences'
+import { siteAssets } from '@/lib/site-assets'
 import type { Locale } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: string }> }
@@ -34,9 +35,11 @@ export default async function Home({ params }: Props) {
             subtitle={t('heroSubtitle')}
             description={t('introDescription')}
             stats={stats}
+            photos={[...siteAssets.introPhotos]}
             photoPlaceholder={t('photoPlaceholder')}
             ctaWorks={t('ctaWorks')}
             ctaContact={t('ctaContact')}
+            ctaInteract={t('ctaInteract')}
           />
         </div>
 

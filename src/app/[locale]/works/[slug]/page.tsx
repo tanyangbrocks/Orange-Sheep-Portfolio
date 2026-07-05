@@ -63,7 +63,13 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {work.previewImages.map((src) => (
               <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-                <Image src={src} alt={localize(work.title, l)} fill className="object-cover" />
+                <Image
+                  src={src}
+                  alt={localize(work.title, l)}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             ))}
           </div>
