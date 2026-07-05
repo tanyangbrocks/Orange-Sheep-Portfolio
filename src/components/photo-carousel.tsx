@@ -6,11 +6,19 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const MAX_PHOTOS = 5
+// Higher = requires a more deliberate swipe (fast flick or long drag) before
+// it counts as a page change, so a slow drag can still be released back to
+// the same photo. Matches the threshold from Framer Motion's own carousel example.
+const SWIPE_CONFIDENCE_THRESHOLD = 10000
 
 const variants = {
   enter: (direction: number) => ({ x: direction > 0 ? '100%' : '-100%', opacity: 0 }),
   center: { x: 0, opacity: 1 },
   exit: (direction: number) => ({ x: direction > 0 ? '-100%' : '100%', opacity: 0 })
+}
+
+function swipePower(offset: number, velocity: number) {
+  return Math.abs(offset) * velocity
 }
 
 export function PhotoCarousel({ photos, placeholder }: { photos: string[]; placeholder: string }) {
@@ -41,14 +49,22 @@ export function PhotoCarousel({ photos, placeholder }: { photos: string[]; place
             animate="center"
             exit="exit"
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="absolute inset-0"
+            drag={items.length > 1 ? 'x' : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(_e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x)
+              if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) go(1)
+              else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) go(-1)
+            }}
+            className="absolute inset-0 touch-pan-y"
           >
             <Image
               src={items[index]}
               alt=""
               fill
               sizes="(max-width: 1024px) 100vw, 340px"
-              className="object-cover"
+              className="pointer-events-none object-cover"
             />
           </motion.div>
         </AnimatePresence>

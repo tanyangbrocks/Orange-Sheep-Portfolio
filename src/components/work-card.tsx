@@ -19,7 +19,7 @@ export function WorkCard({ work, locale }: { work: WorkEntry; locale: Locale }) 
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: false, margin: '-40px' }}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
