@@ -76,7 +76,7 @@ export function IntroHero({
             <Link
               href="/#works"
               onClick={scrollToSection('works')}
-              className="block rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-shadow hover:shadow-lg"
+              className="tap-bounce block rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-shadow hover:shadow-lg"
             >
               {ctaWorks}
             </Link>
@@ -85,7 +85,7 @@ export function IntroHero({
             <Link
               href="/#about"
               onClick={scrollToSection('about')}
-              className="block rounded-md border px-5 py-2.5 text-sm font-medium shadow-sm transition-shadow hover:shadow-lg"
+              className="tap-bounce block rounded-md border px-5 py-2.5 text-sm font-medium shadow-sm transition-shadow hover:shadow-lg"
             >
               {ctaContact}
             </Link>

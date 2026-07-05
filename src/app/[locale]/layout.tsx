@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { OverscrollBounce } from "@/components/overscroll-bounce";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -48,7 +49,9 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
-          <ReactLenis root>{children}</ReactLenis>
+          <ReactLenis root>
+            <OverscrollBounce>{children}</OverscrollBounce>
+          </ReactLenis>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

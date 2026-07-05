@@ -23,7 +23,7 @@ export function WorkCard({ work, locale }: { work: WorkEntry; locale: Locale }) 
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
-      <Link href={`/works/${work.slug}`} className="block h-full">
+      <Link href={`/works/${work.slug}`} className="tap-bounce block h-full">
         <Card className="h-full overflow-hidden py-0 gap-3 transition-shadow hover:shadow-lg">
           {preview && (
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">

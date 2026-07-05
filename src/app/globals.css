@@ -128,3 +128,26 @@
     @apply font-sans;
   }
 }
+
+/* Press-and-release "bounce" feedback for buttons.
+   Native <button>s get this automatically; anything rendered as an <a> that
+   acts like a button (CTAs, nav links, card links) needs the .tap-bounce
+   class added explicitly since it isn't a <button> element. */
+@layer utilities {
+  /* !important on the transition props: several buttons already carry
+     transition-all (or transition-shadow etc.) for their own hover effects,
+     which would otherwise silently win over this and flatten the bounce
+     into a plain, non-bouncy fade. */
+  .tap-bounce,
+  button:not(:disabled) {
+    transition-property: transform !important;
+    transition-duration: 280ms !important;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+  .tap-bounce:active,
+  button:not(:disabled):active {
+    transform: scale(0.92);
+    transition-duration: 100ms !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}

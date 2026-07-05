@@ -114,7 +114,11 @@ export function SiteHeader() {
       ref={headerRef}
       className="sticky top-0 z-10 flex items-center justify-between border-b bg-background/60 px-6 py-4 backdrop-blur"
     >
-      <Link href="/#home" onClick={handleNavClick('home')} className="flex items-center gap-2 font-semibold">
+      <Link
+        href="/#home"
+        onClick={handleNavClick('home')}
+        className="tap-bounce flex items-center gap-2 font-semibold"
+      >
         <Image src="/icon.png" alt="" width={28} height={28} priority className="rounded-full" />
         Orange Sheep
       </Link>
@@ -125,7 +129,7 @@ export function SiteHeader() {
             key={section}
             href={`/#${section}`}
             onClick={handleNavClick(section)}
-            className="relative pb-1"
+            className="tap-bounce relative pb-1"
           >
             {t(section)}
             {active === section && (
@@ -154,7 +158,7 @@ export function SiteHeader() {
               key={section}
               href={`/#${section}`}
               onClick={handleNavClick(section)}
-              className={`flex h-12 items-center px-4 text-base ${
+              className={`tap-bounce flex h-12 items-center px-4 text-base ${
                 active === section ? 'font-semibold' : ''
               }`}
             >
