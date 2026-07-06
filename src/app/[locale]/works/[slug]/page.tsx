@@ -59,41 +59,49 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
 
         <h1 className="text-3xl font-semibold tracking-tight">{localize(work.title, l)}</h1>
 
-        {work.previewImages && work.previewImages.length > 0 && (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {work.previewImages.map((src) => (
-              <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-                <Image
-                  src={src}
-                  alt={localize(work.title, l)}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        )}
-
-        <p className="whitespace-pre-line text-muted-foreground">
-          {localize(work.description, l)}
-        </p>
-
-        <div className="flex flex-wrap items-center gap-3">
-          {work.downloadUrl && (
-            <Button render={<a href={work.downloadUrl} target="_blank" rel="noopener noreferrer" />}>
-              {t('download')}
-            </Button>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+          {work.previewImages && work.previewImages.length > 0 && (
+            <div className="grid grid-cols-1 gap-4">
+              {work.previewImages.map((src) => (
+                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+                  <Image
+                    src={src}
+                    alt={localize(work.title, l)}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           )}
-          {work.links?.map((link) => (
-            <Button
-              key={link.url}
-              variant="outline"
-              render={<a href={link.url} target="_blank" rel="noopener noreferrer" />}
-            >
-              {link.label}
-            </Button>
-          ))}
+
+          <div className="flex flex-col gap-6">
+            <p className="whitespace-pre-line text-muted-foreground">
+              {localize(work.description, l)}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4">
+              {work.downloadUrl && (
+                <Button
+                  size="xl"
+                  render={<a href={work.downloadUrl} target="_blank" rel="noopener noreferrer" />}
+                >
+                  {t('download')}
+                </Button>
+              )}
+              {work.links?.map((link) => (
+                <Button
+                  key={link.url}
+                  size="xl"
+                  variant="outline"
+                  render={<a href={link.url} target="_blank" rel="noopener noreferrer" />}
+                >
+                  {link.label}
+                </Button>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </div>

@@ -12,7 +12,8 @@ export const siteAssets = {
   favicon: 'src/app/icon.png',
   ogImage: '/og-default.png', // not created yet — add the file when Phase 2 needs an OG image
   // Intro section photo carousel (src/components/photo-carousel.tsx caps this
-  // at 5 regardless of how many paths are listed). Empty for now — add paths
-  // under public/ once real photos are ready, e.g. '/intro/photo-1.jpg'.
-  introPhotos: [] as string[]
+  // at 5 regardless of how many paths are listed). Order matters: index 0 is
+  // the leftmost/first-shown photo, matching the 1/2/3/4 naming convention in
+  // the source folder (C:\Portfolio\asset\picture\my_head).
+  introPhotos: ['/intro/photo-1.png', '/intro/photo-2.jpg', '/intro/photo-3.jpg', '/intro/photo-4.jpg'] as string[]
 } as const
