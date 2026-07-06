@@ -124,7 +124,8 @@ type WorkEntry = {
   - ✅ 跑過 `next experimental-analyze` 確認 bundle 體積合理（目前總 client chunks 約 1.1MB 未壓縮，無單一過大 chunk）
   - ✅ 已裝 Vercel Analytics + Speed Insights（`@vercel/analytics`、`@vercel/speed-insights`，接上 Vercel 才會真正收集數據，未部署前是安全的 no-op）
   - ✅ Vercel 帳號登入 + 連接 GitHub repo + 首次部署（使用者已完成，2026-07-06 確認）
-  - ⏳ **待使用者提供**：真實作品資料（雙語文字 + 圖片），目前只有 4 筆佔位假資料
+  - ✅ 第一筆真實作品「如何渡過這學期？」（遊戲專案）已加入（2026-07-06），見 `content/works/how-to-handle-this-semester.yml`
+  - ⏳ **待使用者提供**：其餘真實作品資料（雙語文字 + 圖片），目前還有 4 筆佔位假資料待替換
 - **Phase 5（未來擴充，非本次範圍）**
   - 視需求評估：自訂網域、CMS 後台（含資料庫）、雲端圖床、新增更多分類/子分類、`next-themes` 深色模式、`react-three-fiber` 3D 互動背景
 

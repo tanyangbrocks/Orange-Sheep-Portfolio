@@ -1,0 +1,23 @@
+slug: how-to-handle-this-semester
+category: project
+subcategory: game
+title:
+  zh-TW: 如何渡過這學期？
+  en: How to Handle This Semester?
+description:
+  zh-TW: |
+    114-2 臺大商管程式設計期末分組專案
+
+    在遊戲中，玩家將扮演一位大學生，透過十六回合的策略性時間分配與資源管理，爭取在遊戲結尾以健康的身心狀態，讓期末成績能及格通過。
+    遊戲中設計許多貼合日常生活的情節，是場真實體驗大學壓力平衡與決策的挑戰。
+  en: |
+    Final group project for NTU's Business Programming course (semester 114-2).
+
+    Players take on the role of a college student, making strategic time-allocation and resource-management decisions over sixteen rounds to reach the end of the semester with a healthy body and mind — and a passing grade. The game weaves in scenarios drawn from everyday student life, turning it into a genuine simulation of balancing university pressure and decision-making.
+links:
+  - label: itch.io
+    url: https://daurow.itch.io/how-to-handle-this-semester
+  - label: GitHub
+    url: https://github.com/tanyangbrocks/PBC---How-to-handle-this-semester-
+date: 2026-07-06
+featured: true

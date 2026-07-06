@@ -19,6 +19,14 @@ const WHEEL_IDLE_MS = 150
 // how long a single gesture is allowed to hold the pull regardless of how
 // long its trailing momentum keeps trickling in.
 const MAX_HOLD_MS = 400
+// After a forced release (the MAX_HOLD_MS cap kicking in), the same
+// momentum tail keeps sending events. Without a cooldown, the very next
+// event starts a brand-new "gesture" (pullStartRef was just reset to 0)
+// and gets force-released again 400ms later - repeating several times
+// over a ~1.5s tail and showing up as multiple extra bounces. Ignore
+// wheel input for a bit after a forced release so the rest of the tail
+// can die out silently instead of re-triggering the stretch.
+const COOLDOWN_MS = 800
 // Lenis's resting scroll value isn't always exactly 0/limit (its internal
 // lerp can leave a few px of residual offset), so boundary checks need a
 // tolerance rather than an exact comparison.
@@ -29,6 +37,7 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
   const y = useMotionValue(0)
   const pullRef = useRef(0)
   const pullStartRef = useRef(0)
+  const suppressUntilRef = useRef(0)
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
@@ -58,16 +67,20 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
     }
 
     function onWheel(e: WheelEvent) {
+      const now = performance.now()
+      if (now < suppressUntilRef.current) return
+
       const pullingDown = e.deltaY < 0 && atTop()
       const pullingUp = e.deltaY > 0 && atBottom()
       if (!pullingDown && !pullingUp) return
 
       e.preventDefault()
-      if (pullStartRef.current === 0) pullStartRef.current = performance.now()
+      if (pullStartRef.current === 0) pullStartRef.current = now
       pullRef.current = clampPull(pullRef.current - e.deltaY * RESISTANCE)
       y.set(pullRef.current)
 
-      if (performance.now() - pullStartRef.current > MAX_HOLD_MS) {
+      if (now - pullStartRef.current > MAX_HOLD_MS) {
+        suppressUntilRef.current = now + COOLDOWN_MS
         release()
       } else {
         scheduleRelease()

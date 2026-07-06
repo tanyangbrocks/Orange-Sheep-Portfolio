@@ -42,3 +42,8 @@ next-env.d.ts
 
 # velite generated data layer
 /.velite
+
+# raw source materials staged for processing (can contain large binaries
+# like game download zips that exceed GitHub's 100MB per-file limit);
+# processed output lives in content/works/*.yml + public/works/*
+/asset/
