@@ -137,11 +137,18 @@ type BubbleConfig = {
 
 ## 六、分階段實作步驟
 
-- [ ] Phase A — 深色模式基礎設施：安裝 `next-themes`、新增 `theme-provider.tsx`、`layout.tsx` 接上 `ThemeProvider` + `suppressHydrationWarning`
-- [ ] Phase B — 語言擴充：`routing.ts` 加 6 個 locale、新增 6 份 `messages/*.json` 翻譯（`heroTitle`/`heroSubtitle` 改用 `t.rich()` 格式，`<hl>` 包住姓名/暱稱部分）、新增 `locale-labels.ts` 語言原生名稱對照表
-- [ ] Phase C — `UtilityMenu` 元件：主圓形按鈕（圖示留白、預留放圖片空間）+ 資料驅動的氣泡陣列 + 進場動畫（含波浪 stagger）+ 點外部關閉；桌面/手機共用同一元件
-- [ ] Phase D — 氣泡 1（深色模式切換）接上 `useTheme()`
-- [ ] Phase E — 氣泡 2（語言選單）：左側彈出面板 + 8 語言清單 + 切換邏輯（沿用 `LanguageSwitcher` 核心邏輯）
-- [ ] Phase F — 替換 `site-header.tsx` 桌面版 + 手機版兩處掛載點，移除舊的 `language-switcher.tsx`（或保留其核心 hook 邏輯、UI 部分整併進新元件）
-- [ ] Phase G — 顏色調整：`globals.css` 的 `:root`/`.dark` 依「四、6」表格套用 `--background`/`--card`/`--popover`/`--muted`/`--secondary`/`--sidebar`/`--border`/`--input` 全部新值，新增 `--highlight`（+ 深色模式需要的 `--highlight-foreground`／按鈕文字色），套用到「四、7」列出的 5 處
-- [ ] Phase H — 驗證：`npm run build`/`npm run lint` 0 錯誤 0 警告；preview 工具實測氣泡彈出順序與延遲、深色模式切換即時生效且無 FOUC 閃爍、8 語言切換路由與內容正確、手機版 Sheet 內互動正常、`text-highlight` 5 處套用正確且對比度符合預期
+全部完成（2026-07-07）。
+
+- [x] Phase A — 深色模式基礎設施：安裝 `next-themes`、新增 `theme-provider.tsx`、`layout.tsx` 接上 `ThemeProvider` + `suppressHydrationWarning`
+- [x] Phase B — 語言擴充：`routing.ts` 加 6 個 locale、新增 6 份 `messages/*.json` 翻譯（`heroTitle`/`heroSubtitle` 改用 `t.rich()` 格式，`<hl>` 包住姓名/暱稱部分）、新增 `locale-labels.ts` 語言原生名稱對照表
+- [x] Phase C — `UtilityMenu` 元件：主圓形按鈕（圖示留白、預留放圖片空間）+ 資料驅動的氣泡陣列 + 進場動畫（含波浪 stagger）+ 點外部關閉；桌面/手機共用同一元件
+- [x] Phase D — 氣泡 1（深色模式切換）接上 `useTheme()`
+- [x] Phase E — 氣泡 2（語言選單）：左側彈出面板 + 8 語言清單 + 切換邏輯（沿用 `LanguageSwitcher` 核心邏輯）
+- [x] Phase F — 替換 `site-header.tsx` 桌面版 + 手機版兩處掛載點，移除舊的 `language-switcher.tsx`
+- [x] Phase G — 顏色調整：`globals.css` 的 `:root`/`.dark` 依「四、6」表格套用 `--background`/`--card`/`--popover`/`--muted`/`--secondary`/`--sidebar`/`--border`/`--input` 全部新值，新增 `--highlight`（+ 深色模式需要的 `--highlight-foreground`／按鈕文字色），套用到「四、7」列出的 5 處
+- [x] Phase H — 驗證：`npm run build`/`npm run lint` 0 錯誤 0 警告；preview 工具實測深色模式切換即時生效且無 FOUC 閃爍、8 語言切換路由與內容正確、點擊外部收起選單、手機版 Sheet 內互動正常、`text-highlight` 5 處套用正確且對比度符合預期。**氣泡彈出的視覺 stagger 動畫本身**沒有實際看到播放效果——preview 環境的 `requestAnimationFrame` 被節流/暫停（連既有的 `intro-hero.tsx` 進場動畫也一樣卡在初始幀，確認是環境限制非本次改動引入），只驗證了 DOM 掛載/卸載與 `initial`/`animate`/`transition` 參數正確，待使用者實機確認動畫手感
+
+### 實作過程中發現並修正的問題
+
+- `content/categories.ts` 有自己獨立定義的 `Locale = 'zh-TW' | 'en'` 型別（跟 `src/i18n/routing.ts` 的 `Locale` 是兩個各自獨立的型別定義，先前剛好都是 2 個語言沒被注意到），`works-filter.tsx` 用擴充後的 8 語言 `Locale` 索引 `sub.name` 導致 TypeScript 建置失敗，改用既有的 `localize()` fallback 輔助函式解決，維持「只擴充 UI chrome 不擴充作品內容翻譯」的範圍決定
+- `next-themes` 在 App Router client-side 路由切換時會印出一個已知/無害的 dev-only console 警告（"Encountered a script tag while rendering React component"），是它內建的 hydration guard script 重新渲染觸發，不影響功能，是這套件跟 App Router 搭配的已知現象

@@ -6,8 +6,8 @@
     "about": "Contact"
   },
   "home": {
-    "heroTitle": "Hi, I'm Yang-Hsun Tan",
-    "heroSubtitle": "You can also call me 彈羊",
+    "heroTitle": "Hi, I'm <hl>Yang-Hsun Tan</hl>",
+    "heroSubtitle": "You can also call me <hl>彈羊</hl>",
     "introDescription": "This is placeholder description text — will be replaced with a real introduction later.",
     "stat1Value": "X",
     "stat1Label": "years of experience",

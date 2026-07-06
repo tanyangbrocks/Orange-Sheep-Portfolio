@@ -57,7 +57,7 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
           {work.subcategory && <Badge variant="outline">{work.subcategory}</Badge>}
         </div>
 
-        <h1 className="text-3xl font-semibold tracking-tight">{localize(work.title, l)}</h1>
+        <h1 className="text-3xl font-semibold tracking-tight text-highlight">{localize(work.title, l)}</h1>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
           {work.previewImages && work.previewImages.length > 0 && (

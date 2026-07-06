@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Обо мне",
+    "experience": "Опыт",
+    "works": "Работы",
+    "about": "Контакты"
+  },
+  "home": {
+    "heroTitle": "Привет, я <hl>Yang-Hsun Tan</hl>",
+    "heroSubtitle": "Можно также звать меня <hl>彈羊</hl>",
+    "introDescription": "Это временный текст описания — позже будет заменён настоящим представлением.",
+    "stat1Value": "X",
+    "stat1Label": "лет опыта разработки",
+    "stat2Value": "X",
+    "stat2Label": "завершённых проектов",
+    "stat3Value": "X",
+    "stat3Label": "наград",
+    "ctaWorks": "Смотреть работы",
+    "ctaContact": "Сотрудничество",
+    "ctaInteract": "Интерактив",
+    "photoPlaceholder": "Место для фото",
+    "featured": "Избранная работа",
+    "viewAll": "Показать все"
+  },
+  "work": {
+    "download": "Скачать",
+    "links": "Ссылки",
+    "noResults": "В этой категории пока нет работ",
+    "back": "Назад к работам"
+  },
+  "categories": {
+    "all": "Все",
+    "project": "Проекты",
+    "designAsset": "Дизайн-материалы",
+    "business": "Бизнес",
+    "creative": "Творчество"
+  }
+}

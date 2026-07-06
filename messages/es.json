@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Sobre mí",
+    "experience": "Experiencia",
+    "works": "Proyectos",
+    "about": "Contacto"
+  },
+  "home": {
+    "heroTitle": "Hola, soy <hl>Yang-Hsun Tan</hl>",
+    "heroSubtitle": "También puedes llamarme <hl>彈羊</hl>",
+    "introDescription": "Este es un texto de marcador de posición — se reemplazará más adelante con una presentación real.",
+    "stat1Value": "X",
+    "stat1Label": "años de experiencia",
+    "stat2Value": "X",
+    "stat2Label": "proyectos completados",
+    "stat3Value": "X",
+    "stat3Label": "premios obtenidos",
+    "ctaWorks": "Explorar proyectos",
+    "ctaContact": "Trabaja conmigo",
+    "ctaInteract": "Interactuar",
+    "photoPlaceholder": "Marcador de foto",
+    "featured": "Proyecto destacado",
+    "viewAll": "Ver todo"
+  },
+  "work": {
+    "download": "Descargar",
+    "links": "Enlaces",
+    "noResults": "Todavía no hay proyectos en esta categoría",
+    "back": "Volver a proyectos"
+  },
+  "categories": {
+    "all": "Todos",
+    "project": "Proyectos",
+    "designAsset": "Recursos de diseño",
+    "business": "Negocios",
+    "creative": "Creativo"
+  }
+}

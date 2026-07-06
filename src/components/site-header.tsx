@@ -7,7 +7,7 @@ import { Menu } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useLenis } from 'lenis/react'
 import { Link, usePathname } from '@/i18n/navigation'
-import { LanguageSwitcher } from '@/components/language-switcher'
+import { UtilityMenu } from '@/components/utility-menu'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
 const SECTIONS = ['home', 'experience', 'works', 'about'] as const
@@ -141,7 +141,7 @@ export function SiteHeader() {
             )}
           </Link>
         ))}
-        <LanguageSwitcher />
+        <UtilityMenu />
       </nav>
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -166,7 +166,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <div className="px-4 pt-4">
-            <LanguageSwitcher />
+            <UtilityMenu />
           </div>
         </SheetContent>
       </Sheet>

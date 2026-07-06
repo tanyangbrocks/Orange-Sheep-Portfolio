@@ -7,6 +7,7 @@ import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OverscrollBounce } from "@/components/overscroll-bounce";
+import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -46,13 +47,16 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>
-          <ReactLenis root>
-            <OverscrollBounce>{children}</OverscrollBounce>
-          </ReactLenis>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <ReactLenis root>
+              <OverscrollBounce>{children}</OverscrollBounce>
+            </ReactLenis>
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -7,6 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -49,23 +51,28 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  /* Warm cream palette (user-provided reference color). --card/--popover/
+     --secondary/--muted/--accent/--sidebar all share one mid-tone depth
+     (between --background and --highlight); --border/--input a touch
+     deeper again for a visible edge. See docs/plan-theme-language-menu.md
+     §4.6 for the derivation (sRGB -> OKLab -> OKLCH + WCAG contrast check). */
+  --background: oklch(0.964 0.031 91.0); /* #FBF3DC */
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.922 0.040 91.2); /* #EFE5C8 */
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.922 0.040 91.2);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.922 0.040 91.2);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.922 0.040 91.2);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.922 0.040 91.2);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: oklch(0.880 0.047 90.9); /* #E3D7B5 */
+  --input: oklch(0.880 0.047 90.9);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -73,48 +80,63 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.922 0.040 91.2);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.922 0.040 91.2);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: oklch(0.880 0.047 90.9);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Highlight color: deeper, same hue family as --background, used for
+     name/nickname/work titles/section headings/buttons (see plan §4.7).
+     4.92:1 contrast against --background, passes WCAG AA for normal text. */
+  --highlight: oklch(0.523 0.089 89.5); /* #7E6725 */
+  --highlight-foreground: oklch(1 0 0);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  /* User-specified indigo/blue base (deliberately cool, opposite direction
+     from the warm light-mode palette). Same "mid-tone between background
+     and highlight" derivation as light mode, but lighter than the
+     background (a dark surface needs to read as *raised*, not sunken).
+     See docs/plan-theme-language-menu.md §4.6. */
+  --background: oklch(0.355 0.229 268.9); /* #1A09B0 */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.422 0.221 275.9); /* #3929C2 */
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.422 0.221 275.9);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(0.422 0.221 275.9);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.422 0.221 275.9);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.422 0.221 275.9);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --border: oklch(0.477 0.200 280.3); /* #4F41C8 */
+  --input: oklch(0.477 0.200 280.3);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.422 0.221 275.9);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.422 0.221 275.9);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: oklch(0.477 0.200 280.3);
   --sidebar-ring: oklch(0.556 0 0);
+  /* Highlight: must be *lighter* than --background to pop on a dark
+     surface (opposite direction from light mode's darker highlight).
+     5.45:1 contrast against --background, passes WCAG AA. */
+  --highlight: oklch(0.753 0.097 288.6); /* #ACA5E9 */
+  --highlight-foreground: oklch(0.145 0 0);
 }
 
 @layer base {

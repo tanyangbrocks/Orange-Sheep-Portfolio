@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "소개",
+    "experience": "경력",
+    "works": "대표 작품",
+    "about": "연락하기"
+  },
+  "home": {
+    "heroTitle": "안녕하세요, 저는 <hl>Yang-Hsun Tan</hl>입니다",
+    "heroSubtitle": "<hl>彈羊</hl>이라고 불러주세요",
+    "introDescription": "임시 설명 텍스트입니다. 나중에 실제 자기소개로 교체될 예정입니다.",
+    "stat1Value": "X",
+    "stat1Label": "년의 개발 경험",
+    "stat2Value": "X",
+    "stat2Label": "개의 완료 프로젝트",
+    "stat3Value": "X",
+    "stat3Label": "회의 수상 경력",
+    "ctaWorks": "작품 보기",
+    "ctaContact": "협업 제안하기",
+    "ctaInteract": "인터랙션 체험",
+    "photoPlaceholder": "사진 자리 표시자",
+    "featured": "대표 작품",
+    "viewAll": "전체 보기"
+  },
+  "work": {
+    "download": "다운로드",
+    "links": "관련 링크",
+    "noResults": "이 카테고리에는 아직 작품이 없습니다",
+    "back": "작품 목록으로 돌아가기"
+  },
+  "categories": {
+    "all": "전체",
+    "project": "프로젝트",
+    "designAsset": "디자인 자산",
+    "business": "비즈니스",
+    "creative": "크리에이티브"
+  }
+}

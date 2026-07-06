@@ -6,8 +6,8 @@
     "about": "聯絡我"
   },
   "home": {
-    "heroTitle": "哈囉，我是譚揚勳",
-    "heroSubtitle": "你也可以叫我彈羊",
+    "heroTitle": "哈囉，我是<hl>譚揚勳</hl>",
+    "heroSubtitle": "你也可以叫我<hl>彈羊</hl>",
     "introDescription": "這是敘述文字的範例內容，之後替換成真實的自我介紹。",
     "stat1Value": "X",
     "stat1Label": "年開發經驗",

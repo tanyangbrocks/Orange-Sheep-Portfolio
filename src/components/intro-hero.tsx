@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { useLenis } from 'lenis/react'
 import { Link } from '@/i18n/navigation'
@@ -21,8 +22,8 @@ export function IntroHero({
   ctaContact,
   ctaInteract
 }: {
-  title: string
-  subtitle: string
+  title: ReactNode
+  subtitle: ReactNode
   description: string
   stats: Stat[]
   photos: string[]
@@ -76,7 +77,7 @@ export function IntroHero({
             <Link
               href="/#works"
               onClick={scrollToSection('works')}
-              className="tap-bounce block rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-shadow hover:shadow-lg"
+              className="tap-bounce block rounded-md bg-highlight px-5 py-2.5 text-sm font-medium text-highlight-foreground shadow-sm transition-shadow hover:shadow-lg"
             >
               {ctaWorks}
             </Link>

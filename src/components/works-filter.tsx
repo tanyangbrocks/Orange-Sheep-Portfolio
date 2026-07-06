@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { WorkCard } from '@/components/work-card'
 import { categories } from '@content/categories'
-import type { WorkEntry } from '@/lib/works'
+import { localize, type WorkEntry } from '@/lib/works'
 import type { Locale } from '@/i18n/routing'
 
 export function WorksFilter({ works, locale }: { works: WorkEntry[]; locale: Locale }) {
@@ -60,7 +60,7 @@ export function WorksFilter({ works, locale }: { works: WorkEntry[]; locale: Loc
               className="cursor-pointer"
               onClick={() => setSubcategory(sub.id)}
             >
-              {sub.name[locale]}
+              {localize(sub.name, locale)}
             </Badge>
           ))}
         </div>

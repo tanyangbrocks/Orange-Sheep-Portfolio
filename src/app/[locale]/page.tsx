@@ -31,8 +31,8 @@ export default async function Home({ params }: Props) {
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
         <div id="home" className="scroll-mt-24 pt-16 pb-16">
           <IntroHero
-            title={t('heroTitle')}
-            subtitle={t('heroSubtitle')}
+            title={t.rich('heroTitle', { hl: (chunks) => <span className="text-highlight">{chunks}</span> })}
+            subtitle={t.rich('heroSubtitle', { hl: (chunks) => <span className="text-highlight">{chunks}</span> })}
             description={t('introDescription')}
             stats={stats}
             photos={[...siteAssets.introPhotos]}
@@ -44,17 +44,17 @@ export default async function Home({ params }: Props) {
         </div>
 
         <div id="experience" className="scroll-mt-24 flex flex-col gap-6 border-t py-16">
-          <h2 className="text-3xl font-semibold tracking-tight">{tNav('experience')}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-highlight">{tNav('experience')}</h2>
           <ExperienceTimeline items={experiences} locale={locale as Locale} />
         </div>
 
         <div id="works" className="scroll-mt-24 flex flex-col gap-6 border-t py-16">
-          <h2 className="text-3xl font-semibold tracking-tight">{tNav('works')}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-highlight">{tNav('works')}</h2>
           <WorksFilter works={allWorks} locale={locale as Locale} />
         </div>
 
         <div id="about" className="scroll-mt-24 flex flex-col gap-4 border-t py-16">
-          <h2 className="text-3xl font-semibold tracking-tight">{tNav('about')}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-highlight">{tNav('about')}</h2>
           <p className="text-muted-foreground">Placeholder — content to be added in a later phase.</p>
         </div>
       </main>

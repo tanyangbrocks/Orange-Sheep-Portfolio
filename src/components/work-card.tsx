@@ -41,7 +41,7 @@ export function WorkCard({ work, locale }: { work: WorkEntry; locale: Locale }) 
               {category && <Badge variant="secondary">{t(category.id)}</Badge>}
               {work.subcategory && <Badge variant="outline">{work.subcategory}</Badge>}
             </div>
-            <CardTitle>{localize(work.title, locale)}</CardTitle>
+            <CardTitle className="text-highlight">{localize(work.title, locale)}</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
             <p className="line-clamp-3 text-sm text-muted-foreground">

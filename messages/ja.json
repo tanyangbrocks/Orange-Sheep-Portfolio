@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "自己紹介",
+    "experience": "経歴",
+    "works": "代表作",
+    "about": "お問い合わせ"
+  },
+  "home": {
+    "heroTitle": "こんにちは、<hl>譚揚勳</hl>です",
+    "heroSubtitle": "<hl>彈羊</hl>と呼んでください",
+    "introDescription": "これはプレースホルダーの説明文です。後で本当の自己紹介に差し替えます。",
+    "stat1Value": "X",
+    "stat1Label": "年の開発経験",
+    "stat2Value": "X",
+    "stat2Label": "件の完成プロジェクト",
+    "stat3Value": "X",
+    "stat3Label": "回の受賞経験",
+    "ctaWorks": "作品を見る",
+    "ctaContact": "お仕事のご相談",
+    "ctaInteract": "触ってみる",
+    "photoPlaceholder": "写真プレースホルダー",
+    "featured": "注目の作品",
+    "viewAll": "すべて見る"
+  },
+  "work": {
+    "download": "ダウンロード",
+    "links": "関連リンク",
+    "noResults": "このカテゴリーにはまだ作品がありません",
+    "back": "作品一覧に戻る"
+  },
+  "categories": {
+    "all": "すべて",
+    "project": "プロジェクト",
+    "designAsset": "デザイン素材",
+    "business": "ビジネス",
+    "creative": "クリエイティブ"
+  }
+}
