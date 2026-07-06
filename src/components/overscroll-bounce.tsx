@@ -11,7 +11,7 @@ import { motion, useMotionValue, animate } from 'framer-motion'
 // ends (or wheel input goes idle), spring it back to 0.
 const MAX_PULL = 80
 const RESISTANCE = 0.4
-const WHEEL_IDLE_MS = 150
+const WHEEL_IDLE_MS = 75
 // Chrome/Edge trackpad "momentum" scrolling keeps sending a long tail of
 // small wheel events (often 1-1.5s worth) after the fingers actually lift.
 // Since each one resets the idle timer, the pulled state used to stay
@@ -31,6 +31,16 @@ const COOLDOWN_MS = 800
 // lerp can leave a few px of residual offset), so boundary checks need a
 // tolerance rather than an exact comparison.
 const BOUNDARY_TOLERANCE = 12
+// Any scroll-to-boundary gesture's last tick or two naturally lands inside
+// BOUNDARY_TOLERANCE (you always pass through position 12, 11, ... 1, 0 on
+// the way to the top) - without a dead zone, that final normal tick got
+// treated as an overscroll pull and immediately released with a visible
+// spring-back, so *every* gentle "scroll all the way to the top and stop"
+// gesture bounced even though the user never intended to overscroll. Only
+// let the pull become visible (and only then schedule a bounce-back) once
+// it's accumulated past this dead zone, i.e. the user kept pushing past the
+// boundary rather than just arriving at it.
+const DEAD_ZONE = 10
 
 export function OverscrollBounce({ children }: { children: React.ReactNode }) {
   const lenis = useLenis()
@@ -52,6 +62,14 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
 
     function clampPull(value: number) {
       return Math.max(-MAX_PULL, Math.min(MAX_PULL, value))
+    }
+
+    // Shrinks the raw pull by the dead zone before it's ever shown, so small
+    // amounts (the incidental overshoot inherent in any arrival at the
+    // boundary) stay invisible; only the excess beyond the dead zone shows.
+    function visualPull(raw: number) {
+      const sign = Math.sign(raw)
+      return sign * Math.max(0, Math.abs(raw) - DEAD_ZONE)
     }
 
     function release() {
@@ -77,7 +95,7 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
       e.preventDefault()
       if (pullStartRef.current === 0) pullStartRef.current = now
       pullRef.current = clampPull(pullRef.current - e.deltaY * RESISTANCE)
-      y.set(pullRef.current)
+      y.set(visualPull(pullRef.current))
 
       if (now - pullStartRef.current > MAX_HOLD_MS) {
         suppressUntilRef.current = now + COOLDOWN_MS
@@ -104,7 +122,7 @@ export function OverscrollBounce({ children }: { children: React.ReactNode }) {
       }
       e.preventDefault()
       pullRef.current = clampPull(diff * RESISTANCE)
-      y.set(pullRef.current)
+      y.set(visualPull(pullRef.current))
     }
 
     function onTouchEnd() {
